@@ -7,8 +7,8 @@ def find_max_profit(prices):
   # second value [1] represents index the price was found at
   max_price = [-1, 0]
   min_price = [-1, 0]
-  cur_max_sale = -1000000
-  previous_price = 1000000
+  cur_max_sale = None
+  previous_price = None
   for i in range(0, len(prices)):
     if (max_price[0] == -1):
       max_price[0] = prices[i]
@@ -22,11 +22,15 @@ def find_max_profit(prices):
       min_price[0] = prices[i]
       min_price[1] = i
 
-    if(min_price[0] != -1 and (max_price[0] - min_price[0]) > cur_max_sale and min_price[1] < max_price[1]):
-      cur_max_sale = max_price[0] - min_price[0]
+    if(i == 1):
+      cur_max_sale = prices[1] - prices[0]
 
-    if (cur_max_sale < (prices[i] - previous_price)):
-      cur_max_sale = prices[i] - previous_price
+    if(cur_max_sale is not None):
+      if(min_price[0] != -1 and (max_price[0] - min_price[0]) > cur_max_sale and min_price[1] < max_price[1]):
+        cur_max_sale = max_price[0] - min_price[0]
+
+      if (cur_max_sale < (prices[i] - previous_price)):
+        cur_max_sale = prices[i] - previous_price
     previous_price = prices[i]
   return cur_max_sale
 
