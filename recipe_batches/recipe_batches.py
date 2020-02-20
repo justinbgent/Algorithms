@@ -2,8 +2,21 @@
 
 import math
 
+# i will be the 'key' of iterated items
+    #recipe[i] # access value of item
+    #for i in ingredients:
+      #if (i == i):
+        #pass
+
 def recipe_batches(recipe, ingredients):
-  pass 
+  quantities = [0] * len(recipe)
+  counter = 0
+  for i in recipe:
+    if i in ingredients:
+      quantities[counter] = int(ingredients[i] / recipe[i])
+    counter += 1
+  return min(quantities)
+
 
 
 if __name__ == '__main__':
